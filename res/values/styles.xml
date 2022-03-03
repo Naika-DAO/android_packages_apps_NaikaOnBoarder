@@ -16,6 +16,11 @@
      limitations under the License.
 -->
 <resources>
+    <style name="Theme.Setup" parent="@style/SudFullDynamicColorThemeGlifV3.DayNight">
+        <item name="sucUsePartnerResource">true</item>
+        <item name="sudUsePartnerHeavyTheme">true</item>
+    </style>
+
     <style name="SpinnerItem">
         <item name="android:textSize">15sp</item>
         <item name="android:paddingLeft">@dimen/content_margin_left</item>
