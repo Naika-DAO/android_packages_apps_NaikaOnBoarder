@@ -54,4 +54,9 @@ public class BluetoothSetupActivity extends WrapperSubBaseActivity {
         nextAction(RESULT_OK);
         return TRANSITION_ID_SLIDE;
     }
+
+    @Override
+    protected boolean headerNavigationIsEnabled() {
+        return true;
+    }
 }

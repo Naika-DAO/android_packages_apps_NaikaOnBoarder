@@ -42,6 +42,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.net.wifi.WifiManager;
@@ -54,18 +55,20 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import com.android.settingslib.Utils;
 
 import com.google.android.setupcompat.util.WizardManagerHelper;
 import com.google.android.setupdesign.GlifLayout;
+import com.google.android.setupdesign.GlifLayout.HeaderNavigationBarListener;
 
 import org.lineageos.setupwizard.NavigationLayout.NavigationBarListener;
 import org.lineageos.setupwizard.util.SetupWizardUtils;
 
 import java.util.List;
 
-public abstract class BaseSetupWizardActivity extends Activity implements NavigationBarListener {
+public abstract class BaseSetupWizardActivity extends Activity implements NavigationBarListener, HeaderNavigationBarListener {
 
     public static final String TAG = BaseSetupWizardActivity.class.getSimpleName();
 
@@ -244,12 +247,6 @@ public abstract class BaseSetupWizardActivity extends Activity implements Naviga
     protected void setNextText(int resId) {
         if (mNavigationBar != null) {
             mNavigationBar.getNextButton().setText(resId);
-        }
-    }
-
-    protected void setSkipText(int resId) {
-        if (mNavigationBar != null) {
-            mNavigationBar.getSkipButton().setText(resId);
         }
     }
 
@@ -646,12 +643,26 @@ public abstract class BaseSetupWizardActivity extends Activity implements Naviga
             final CharSequence headerText = TextUtils.expandTemplate(getText(getTitleResId()));
             getGlifLayout().setHeaderText(headerText);
         }
+        if (getDescriptionResId() != -1) {
+            final CharSequence descText = TextUtils.expandTemplate(getText(getDescriptionResId()));
+            getGlifLayout().setDescriptionText(descText);
+        }
+        if (getDescriptionText() != null) {
+            getGlifLayout().setDescriptionText(getDescriptionText());
+        }
         if (getIconResId() != -1) {
             final GlifLayout layout = getGlifLayout();
             final Drawable icon = getDrawable(getIconResId()).mutate();
-            icon.setTintList(Utils.getColorAccent(layout.getContext()));
+            icon.setTintList(ColorStateList.valueOf(layout.getContext().getColor(R.color.sud_custom_header_icon_color)));
             layout.setIcon(icon);
         }
+        if (headerNavigationIsEnabled()) {
+            getGlifLayout().enableHeaderNavigation(this, showSkip());
+        }
+    }
+
+    protected void hideHeader() {
+        getGlifLayout().hideHeader();
     }
 
     protected GlifLayout getGlifLayout() {
@@ -666,7 +677,23 @@ public abstract class BaseSetupWizardActivity extends Activity implements Naviga
         return -1;
     }
 
+    protected int getDescriptionResId() {
+        return -1;
+    }
+
+    protected CharSequence getDescriptionText() {
+        return null;
+    }
+
     protected int getIconResId() {
         return -1;
+    }
+
+    protected boolean headerNavigationIsEnabled() {
+        return false;
+    }
+
+    protected boolean showSkip() {
+        return true;
     }
 }

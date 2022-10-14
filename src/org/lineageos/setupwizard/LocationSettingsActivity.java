@@ -68,4 +68,9 @@ public class LocationSettingsActivity extends BaseSetupWizardActivity {
         return R.drawable.ic_location;
     }
 
+    @Override
+    protected boolean headerNavigationIsEnabled() {
+        return true;
+    }
+
 }

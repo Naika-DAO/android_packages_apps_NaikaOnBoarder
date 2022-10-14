@@ -44,18 +44,13 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/setup_biometric_summary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="@style/SudItemContainer.Verbose"/>
-
-                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="24dp"
                         android:paddingLeft="@dimen/content_margin_left"
                         android:paddingRight="@dimen/location_text_margin_right"
                         android:drawableStart="@drawable/ic_check_mark"
+                        android:drawableTint="?android:textColorPrimary"
                         android:drawablePadding="24dp"
                         android:gravity="center_vertical"
                         android:textSize="16sp"
@@ -70,6 +65,7 @@
                         android:paddingLeft="@dimen/content_margin_left"
                         android:paddingRight="@dimen/location_text_margin_right"
                         android:drawableStart="@drawable/ic_check_mark"
+                        android:drawableTint="?android:textColorPrimary"
                         android:drawablePadding="24dp"
                         android:gravity="center_vertical"
                         android:textSize="16sp"

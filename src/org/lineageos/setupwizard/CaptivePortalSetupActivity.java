@@ -131,4 +131,9 @@ public class CaptivePortalSetupActivity extends WrapperSubBaseActivity {
         }
     }
 
+    @Override
+    protected boolean headerNavigationIsEnabled() {
+        return true;
+    }
+
 }

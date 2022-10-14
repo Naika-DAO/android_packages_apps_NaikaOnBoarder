@@ -74,6 +74,11 @@ public class FinishActivity extends BaseSetupWizardActivity {
     }
 
     @Override
+    protected boolean headerNavigationIsEnabled() {
+        return false;
+    }
+
+    @Override
     public void finish() {
         super.finish();
         if (!isResumed() || mResultCode != RESULT_CANCELED) {

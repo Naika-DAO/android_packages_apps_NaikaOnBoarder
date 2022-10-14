@@ -38,7 +38,7 @@ public class SetupWizardApp extends Application {
     public static final String ACTION_SETUP_COMPLETE =
             "org.lineageos.setupwizard.LINEAGE_SETUP_COMPLETE";
     public static final String ACTION_FINISHED = "org.lineageos.setupwizard.SETUP_FINISHED";
-    public static final String ACTION_SETUP_WIFI = "android.settings.NETWORK_PROVIDER_SETTINGS";
+    public static final String ACTION_SETUP_NETWORK = "android.settings.NETWORK_PROVIDER_SETUP";
     public static final String ACTION_SETUP_BIOMETRIC = "android.settings.BIOMETRIC_ENROLL";
     public static final String ACTION_SETUP_LOCKSCREEN = "com.android.settings.SETUP_LOCK_SCREEN";
     public static final String ACTION_RESTORE_FROM_BACKUP =
@@ -55,12 +55,19 @@ public class SetupWizardApp extends Application {
     public static final String EXTRA_RESULT_CODE = "com.android.setupwizard.ResultCode";
     public static final String EXTRA_PREFS_SHOW_BUTTON_BAR = "extra_prefs_show_button_bar";
     public static final String EXTRA_PREFS_SHOW_SKIP = "extra_prefs_show_skip";
+    public static final String EXTRA_PREFS_SHOW_SKIP_TV = "extra_show_skip_network";
     public static final String EXTRA_PREFS_SET_BACK_TEXT = "extra_prefs_set_back_text";
     public static final String EXTRA_ENABLE_NEXT_ON_CONNECT = "wifi_enable_next_on_connect";
 
     public static final String KEY_DETECT_CAPTIVE_PORTAL = "captive_portal_detection_enabled";
+    public static final String KEY_SEND_METRICS = "send_metrics";
+    public static final String DISABLE_NAV_KEYS = "disable_nav_keys";
+    public static final String ENABLE_RECOVERY_UPDATE = "enable_recovery_update";
+    public static final String UPDATE_RECOVERY_PROP = "persist.vendor.recovery_update";
 
-    public static final int REQUEST_CODE_SETUP_WIFI = 0;
+    public static final String NAVIGATION_OPTION_KEY = "navigation_option";
+
+    public static final int REQUEST_CODE_SETUP_NETWORK = 0;
     public static final int REQUEST_CODE_SETUP_CAPTIVE_PORTAL = 4;
     public static final int REQUEST_CODE_SETUP_BLUETOOTH = 5;
     public static final int REQUEST_CODE_SETUP_BIOMETRIC = 7;

@@ -39,7 +39,7 @@ import com.android.internal.telephony.util.LocaleUtils;
 
 import com.google.android.setupcompat.util.SystemBarHelper;
 
-import org.lineageos.setupwizard.widget.LocalePicker;
+import org.lineageos.setupwizard.widget.LocaleView;
 
 import java.util.List;
 import java.util.Locale;
@@ -51,7 +51,7 @@ public class LocaleActivity extends BaseSetupWizardActivity {
     private ArrayAdapter<com.android.internal.app.LocalePicker.LocaleInfo> mLocaleAdapter;
     private Locale mCurrentLocale;
     private int[] mAdapterIndices;
-    private LocalePicker mLanguagePicker;
+    private LocaleView mLanguagePicker;
     private FetchUpdateSimLocaleTask mFetchUpdateSimLocaleTask;
     private final Handler mHandler = new Handler();
     private boolean mPendingLocaleUpdate;
@@ -79,8 +79,8 @@ public class LocaleActivity extends BaseSetupWizardActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SystemBarHelper.setBackButtonVisible(getWindow(), true);
-        setNextText(R.string.next);
-        mLanguagePicker = (LocalePicker) findViewById(R.id.locale_list);
+        //setNextText(R.string.next);
+        mLanguagePicker = (LocaleView) findViewById(R.id.locale_list);
         loadLanguages();
     }
 
@@ -121,6 +121,16 @@ public class LocaleActivity extends BaseSetupWizardActivity {
         return R.drawable.ic_locale;
     }
 
+    @Override
+    protected boolean headerNavigationIsEnabled() {
+        return true;
+    }
+
+    @Override
+    protected boolean showSkip() {
+        return false;
+    }
+
     private void loadLanguages() {
         mLocaleAdapter = com.android.internal.app.LocalePicker.constructAdapter(this,
                 R.layout.locale_picker_item, R.id.locale);
@@ -139,22 +149,15 @@ public class LocaleActivity extends BaseSetupWizardActivity {
             mAdapterIndices[i] = i;
             labels[i] = localLocaleInfo.getLabel();
         }
-        mLanguagePicker.setDisplayedValues(labels);
-        mLanguagePicker.setMaxValue(labels.length - 1);
-        mLanguagePicker.setValue(currentLocaleIndex);
-        mLanguagePicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-        mLanguagePicker.setOnValueChangedListener((pkr, oldVal, newVal) -> setLocaleFromPicker());
+        mLanguagePicker.setItems(labels);
+        mLanguagePicker.setCallback((pos) -> setLocaleFromPicker(pos));
 
-        mLanguagePicker.setOnScrollListener((view, scrollState) -> {
-            if (scrollState == NumberPicker.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
-                ((SetupWizardApp) getApplication()).setIgnoreSimLocale(true);
-            }
-        });
     }
 
-    private void setLocaleFromPicker() {
+
+    private void setLocaleFromPicker(int pos) {
         ((SetupWizardApp) getApplication()).setIgnoreSimLocale(true);
-        int i = mAdapterIndices[mLanguagePicker.getValue()];
+        int i = mAdapterIndices[pos];
         final com.android.internal.app.LocalePicker.LocaleInfo localLocaleInfo =
                 mLocaleAdapter.getItem(i);
         onLocaleChanged(localLocaleInfo.getLocale());
@@ -171,6 +174,7 @@ public class LocaleActivity extends BaseSetupWizardActivity {
         mHandler.removeCallbacks(mUpdateLocale);
         mCurrentLocale = paramLocale;
         mHandler.postDelayed(mUpdateLocale, 1000);
+        onNextPressed();
     }
 
     private void fetchAndUpdateSimLocale() {

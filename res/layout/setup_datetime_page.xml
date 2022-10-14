@@ -34,27 +34,17 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true">
-
-                <LinearLayout
+            <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date_time_summary"
-                        style="@style/SudItemTitle.GlifDescription" />
+                    android:layout_height="wrap_content"
+                    android:padding="24dp"
+                    android:background="@drawable/sud_rounded_background">
 
                     <Spinner
                         android:id="@+id/timezone_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
                         android:saveEnabled="false"/>
 
                     <TwoLineListItem
@@ -112,7 +102,6 @@
                     </TwoLineListItem>
 
                 </LinearLayout>
-            </ScrollView>
         </FrameLayout>
 
         <org.lineageos.setupwizard.NavigationLayout

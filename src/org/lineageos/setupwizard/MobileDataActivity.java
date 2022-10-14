@@ -315,6 +315,11 @@ public class MobileDataActivity extends BaseSetupWizardActivity {
         return R.drawable.ic_mobile_data;
     }
 
+    @Override
+    protected boolean headerNavigationIsEnabled() {
+        return true;
+    }
+
     private int getDefaultSubscriptionId() {
         return SubscriptionManager.getDefaultSubscriptionId();
     }

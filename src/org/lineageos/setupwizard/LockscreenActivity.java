@@ -24,53 +24,23 @@ import static org.lineageos.setupwizard.SetupWizardApp.REQUEST_CODE_SETUP_LOCKSC
 
 import android.app.KeyguardManager;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 
 import org.lineageos.setupwizard.util.SetupWizardUtils;
 
-public class ScreenLockActivity extends SubBaseActivity {
+public class LockscreenActivity extends WrapperSubBaseActivity {
 
-    public static final String TAG = ScreenLockActivity.class.getSimpleName();
-
-    @Override
-    protected void onNextPressed() {
-        launchLockscreenSetup();
-    }
+    public static final String TAG = LockscreenActivity.class.getSimpleName();
 
     @Override
     protected void onStartSubactivity() {
         if (isKeyguardSecure()) {
-            Log.v(TAG, "Screen lock already set up; skipping ScreenLockActivity");
+            Log.v(TAG, "Screen lock already set up; skipping LockscreenActivity");
             nextAction(RESULT_OK);
-            SetupWizardUtils.disableComponent(this, ScreenLockActivity.class);
+            SetupWizardUtils.disableComponent(this, LockscreenActivity.class);
             finish();
             return;
         }
-        setNextAllowed(true);
-    }
-
-    @Override
-    protected int getLayoutResId() {
-        return R.layout.setup_lockscreen;
-    }
-
-    @Override
-    protected int getTitleResId() {
-        return R.string.lockscreen_setup_title;
-    }
-
-    @Override
-    protected int getIconResId() {
-        return R.drawable.ic_lock_screen;
-    }
-
-    @Override
-    protected boolean headerNavigationIsEnabled() {
-        return true;
-    }
-
-    private void launchLockscreenSetup() {
         Intent intent = new Intent(ACTION_SETUP_LOCKSCREEN);
         intent.putExtra(EXTRA_TITLE,
                 getString(R.string.settings_lockscreen_setup_title));
@@ -82,4 +52,10 @@ public class ScreenLockActivity extends SubBaseActivity {
     private boolean isKeyguardSecure() {
         return getSystemService(KeyguardManager.class).isKeyguardSecure();
     }
+
+    @Override
+    protected boolean headerNavigationIsEnabled() {
+        return true;
+    }
+
 }

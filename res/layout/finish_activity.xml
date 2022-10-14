@@ -31,16 +31,10 @@
         android:orientation="vertical"
         style="@style/SudContentFrame">
 
-        <ImageView
-            android:id="@+id/brand_logo"
+        <View
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="1"
-            android:src="@drawable/logo"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:gravity="center"
-            android:padding="@dimen/content_margin_left"/>
+            android:layout_weight="1" />
 
         <org.lineageos.setupwizard.NavigationLayout
             android:id="@+id/navigation_bar"
@@ -48,6 +42,18 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+    <TextView
+        style="@style/WelcomeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:hyphenationFrequency="none"
+        android:textAlignment="center"
+        android:textColor="?android:textColorPrimary"
+        android:paddingHorizontal="16dp"
+        android:textSize="42sp"
+        android:text="Welcome to\nNaika Phone" />
 
     <ImageView
         android:id="@+id/reveal"

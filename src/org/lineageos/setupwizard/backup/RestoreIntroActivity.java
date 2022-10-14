@@ -37,9 +37,6 @@ public class RestoreIntroActivity extends SubBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final TextView restoreSubtitle = (TextView) findViewById(R.id.intro_restore_subtitle);
-        restoreSubtitle.setText(getString(R.string.intro_restore_subtitle,
-                getString(R.string.os_name)));
     }
 
     @Override
@@ -77,8 +74,18 @@ public class RestoreIntroActivity extends SubBaseActivity {
     }
 
     @Override
+    protected CharSequence getDescriptionText() {
+        return getString(R.string.intro_restore_subtitle, getString(R.string.os_name));
+    }
+
+    @Override
     protected int getIconResId() {
         return R.drawable.ic_restore;
+    }
+
+    @Override
+    protected boolean headerNavigationIsEnabled() {
+        return true;
     }
 
     private void launchRestore() {

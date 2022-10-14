@@ -38,14 +38,10 @@ public class BiometricActivity extends SubBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final TextView setupBiometricSummary = (TextView) findViewById(
-                R.id.setup_biometric_summary);
         final TextView setupAddBiometric = (TextView) findViewById(R.id.setup_add_biometric);
         if (SetupWizardUtils.hasFace(this)) {
-            setupBiometricSummary.setText(getString(R.string.face_setup_summary));
             setupAddBiometric.setText(R.string.face_setup_add_face);
         } else {
-            setupBiometricSummary.setText(getString(R.string.fingerprint_setup_summary));
             setupAddBiometric.setText(R.string.fingerprint_setup_add_fingerprint);
         }
     }
@@ -74,6 +70,14 @@ public class BiometricActivity extends SubBaseActivity {
     }
 
     @Override
+    protected int getDescriptionResId() {
+        if (SetupWizardUtils.hasFace(this)) {
+            return R.string.face_setup_summary;
+        }
+        return R.string.fingerprint_setup_summary;
+    }
+
+    @Override
     protected int getIconResId() {
         if (SetupWizardUtils.hasFace(this)) {
             return R.drawable.ic_face;
@@ -81,9 +85,13 @@ public class BiometricActivity extends SubBaseActivity {
         return R.drawable.ic_fingerprint;
     }
 
+    @Override
+    protected boolean headerNavigationIsEnabled() {
+        return true;
+    }
+
     private void launchBiometricSetup() {
         Intent intent = new Intent(ACTION_SETUP_BIOMETRIC);
-        intent.putExtra(WizardManagerHelper.EXTRA_THEME, ThemeHelper.THEME_GLIF_V3_LIGHT);
         intent.putExtra(EXTRA_TITLE,
                 getString(getTitleResId()));
         intent.putExtra(EXTRA_DETAILS,

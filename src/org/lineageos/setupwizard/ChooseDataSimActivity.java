@@ -480,4 +480,9 @@ public class ChooseDataSimActivity extends BaseSetupWizardActivity {
     protected int getIconResId() {
         return R.drawable.ic_sim;
     }
+
+    @Override
+    protected boolean headerNavigationIsEnabled() {
+        return true;
+    }
 }

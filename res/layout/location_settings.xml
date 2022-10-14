@@ -34,15 +34,12 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true">
-
-                <LinearLayout
+            <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:background="@drawable/sud_rounded_background">
 
                     <LinearLayout
                         android:id="@+id/location"
@@ -53,7 +50,6 @@
                         android:paddingRight="@dimen/content_margin_right"
                         android:background="?android:attr/selectableItemBackground"
                         android:clickable="true">
-
 
                         <CheckBox
                             android:id="@+id/location_checkbox"
@@ -72,7 +68,6 @@
 
                     </LinearLayout>
                 </LinearLayout>
-            </ScrollView>
         </FrameLayout>
 
         <org.lineageos.setupwizard.NavigationLayout

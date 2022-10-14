@@ -165,8 +165,23 @@ public class DateTimeActivity extends BaseSetupWizardActivity implements
     }
 
     @Override
+    protected int getDescriptionResId() {
+        return R.string.date_time_summary;
+    }
+
+    @Override
     protected int getIconResId() {
         return R.drawable.ic_datetime;
+    }
+
+    @Override
+    protected boolean headerNavigationIsEnabled() {
+        return true;
+    }
+
+    @Override
+    protected boolean showSkip() {
+        return false;
     }
 
     @Override

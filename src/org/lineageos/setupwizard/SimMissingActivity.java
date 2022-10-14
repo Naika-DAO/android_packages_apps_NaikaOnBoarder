@@ -87,8 +87,23 @@ public class SimMissingActivity extends BaseSetupWizardActivity {
     }
 
     @Override
+    protected int getDescriptionResId() {
+        return R.string.sim_missing_summary;
+    }
+
+    @Override
     protected int getIconResId() {
         return R.drawable.ic_sim;
+    }
+
+    @Override
+    protected boolean headerNavigationIsEnabled() {
+        return true;
+    }
+
+    @Override
+    protected boolean showSkip() {
+        return false;
     }
 
 }
